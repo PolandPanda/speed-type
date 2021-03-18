@@ -1,1 +1,24 @@
-/* No CSS *//*# sourceMappingURL=style.css.map */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+}
+
+.speed {
+  height: 100vh;
+  background-color: #292929;
+  color: #fff;
+}
+
+.speed__text {
+  background-color: red;
+  width: 30%;
+  text-align: center;
+}
+/*# sourceMappingURL=style.css.map */

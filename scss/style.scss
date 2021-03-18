@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap');
+$font: 'Poppins', sans-serif;
+$primaryColor: #292929;
+$lightColor: #fff;
+
+* {
+    box-sizing: border-box;
+    margin:0;
+    padding: 0;
+}
+
+body {
+    font-family: $font;
+}
+
+.speed {
+    height: 100vh;
+    background-color: $primaryColor;
+    color: $lightColor;
+    &__text {
+        background-color: red;
+        width: 30%;
+        text-align: center;
+    }
+}

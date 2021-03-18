@@ -1,0 +1,1 @@
+const URL = "http://quotes.stormconsultancy.co.uk/random.json";
