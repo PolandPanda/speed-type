@@ -17,9 +17,33 @@ body {
     height: 100vh;
     background-color: $primaryColor;
     color: $lightColor;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
     &__text {
-        background-color: red;
-        width: 30%;
-        text-align: center;
+        // background-color: lightblue;
+        width: 800px;
+        margin-bottom: 20px;
+        letter-spacing: 2px;
     }
+}
+.correct {
+    text-decoration: underline;
+    text-decoration-color: green;
+
+}
+
+.incorrect {
+    text-decoration: underline;
+    text-decoration-color: red;
+}
+textarea {
+    background-color: transparent;
+    color: $lightColor;
+    padding: 5px;
+    font-size: 1.2rem;
 }
