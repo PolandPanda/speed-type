@@ -1,58 +1,52 @@
-const text = document.getElementById("text");
-let ans = document.getElementById("answer");
-const URL = "http://quotes.stormconsultancy.co.uk/random.json";
-
-fetch(URL)
-    .then(data => data.json())
-    // .then(data => console.log(data.quote))
-    .then(function (data) {
-
-        const quote = data.quote;
-        // console.log(quote);
-        text.innerText = quote;
+const RANDOM_QUOTE_API_URL = 'http://api.quotable.io/random';
+const quoteDisplayElement = document.getElementById("quoteDisplay")
+const quoteInputElement = document.getElementById("quoteInput");
 
 
 
-        // get value from textarea
-        ans.addEventListener("input", () => {
+function getRandomQuote() {
+    return fetch(RANDOM_QUOTE_API_URL)
+        .then(res => res.json())
+        .then(data => data.content)
+}
 
 
-            // add words to array as a letter
-            const letter = quote.split('');
-            // console.log(letter);
-            let words = ans.value;
-            let answer = words.split('');
-            // console.log(answer);
-            // console.log(answer);
-            let correct = true;
-            console.log(letter);
-            console.log(answer)
-            answer.forEach((char, index) => {
-                const character = answer[index];
-                const char2 = letter[index];
-                let span = document.createElement("span");
-                span.innerText = words
-                console.log(character)
-                console.log(span)
-
-                if (character == null) {
-                    // console.log("null");
-                    // span.classList.remove("correct")
-                    // span.classList.remove("incorrect")
-                }
-
-                else if (character == char2) {
-                    document.querySelector("h1").innerText = "correct";
-                    console.log("correct");
-                    span.classList.add("correct")
-
-                } else {
-                    console.log("Incorrect");
-                    document.querySelector("h1").innerText = "incorrect";
-                    span.classList.add("incorrect")
-                    span.classList.remove("correct")
-
-                }
-            })
-        })
+quoteInputElement.addEventListener('input', () => {
+    // console.log('change')
+    const arrayValue = quoteInputElement.value.split('');
+    const arrayQuote = quoteDisplayElement.querySelectorAll('span');
+    let correct = true;
+    arrayQuote.forEach((characterSpan, index) => {
+        const character = arrayValue[index];
+        if (character == null) {
+            characterSpan.classList.remove('correct');
+            characterSpan.classList.remove('incorrect');
+            correct = false
+        }
+        else if (character === characterSpan.innerText) {
+            characterSpan.classList.add('correct');
+            characterSpan.classList.remove('incorrect');
+        } else {
+            characterSpan.classList.remove('correct');
+            characterSpan.classList.add('incorrect');
+            correct = false
+        }
     })
+
+})
+
+async function renderNewQuote() {
+    const quote = await getRandomQuote();
+    // console.log(quote);
+    quoteDisplayElement.innerHTML = '';
+    // Poszczególne znaki zamienia w tablicę
+    quote.split('').forEach(char => {
+        const character = document.createElement('span');
+        // character.classList.add('correct');
+        character.innerText = char;
+        quoteDisplayElement.appendChild(character)
+    })
+}
+
+
+renderNewQuote();
